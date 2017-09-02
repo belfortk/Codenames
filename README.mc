@@ -1,1 +1,1 @@
-Wow look, I wrote a README!!! I'm a genius.
+Wow look, I wrote a README!!! I can't spell.
