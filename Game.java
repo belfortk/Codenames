@@ -62,10 +62,9 @@ public class Game
             Thread.sleep(1000);
             System.out.println("Now pick the number of guesses you'd like your team to have!");
             Thread.sleep(1000);
-            currentGuesses = console.nextInt();
+            currentGuesses = turnToInt(console.nextLine());
             while(currentGuesses < 1){
-               System.out.println("Uh-oh! Your guesses needs to be greater than zero!");
-               currentGuesses = console.nextInt();
+               currentGuesses = turnToInt(console.nextLine());
             }
             System.out.println("You have given your team " + currentGuesses + " guesses!");
             Thread.sleep(1000);
@@ -155,6 +154,19 @@ public class Game
          System.out.println("Congrats Red team! You won!");
       } else if (blueRemaining==0){
          System.out.println("Congrats Blue team! You won!");
+      }
+
+   }
+
+   private int turnToInt(String s) {
+      try {
+         int i = Integer.parseInt(s);
+         if (i<1)
+            System.out.println("Uh-oh! Your guesses needs to be greater than zero!");
+         return i;
+      } catch (NumberFormatException e){
+         System.out.println("That isn't a number!");
+         return 0;
       }
 
    }
