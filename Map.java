@@ -11,7 +11,7 @@ public class Map
 
    public Map()
    {
-      start = Turn.values()[2 * rand.nextInt(1)] ;
+      start = Turn.values()[2 * rand.nextInt(2)] ;
       
       map = new CardTeam[5][5];
       
@@ -63,6 +63,10 @@ public class Map
    
       return map;
    
+   }
+
+   public Turn getStart() {
+      return start;
    }
 
 
