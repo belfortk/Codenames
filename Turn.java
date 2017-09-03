@@ -15,7 +15,7 @@ public enum Turn
 
    public void getString() throws InterruptedException {
       String[] wordArray = this.toString().split("_"); //hi kyle my name is erik
-      System.out.println(capitalizeFully(wordArray[0]) + " " + (wordArray[1].equals("CM") ? "Code Masters" : "Players")
+      System.out.println(capitalizeFully((wordArray[0] )) + " " + (wordArray[1].equals("CM") ? "Code Masters" : "Players")
               + ", it's your turn to " + (wordArray[1].equals("CM") ? "pick a word! Remember, you can only give ONE word," +
               " no more!" : "choose your cards!"));
       if(wordArray[1].equals("CM")){
