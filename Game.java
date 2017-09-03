@@ -201,7 +201,7 @@ public class Game
             dict.add(sc.nextLine());
             wordCount++;
          }
-         System.out.println("Number of words: " + wordCount);
+
       }
       
       
