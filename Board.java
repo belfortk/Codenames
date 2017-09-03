@@ -25,15 +25,53 @@ public class Board
          }    
       }
       
-      printBoard(newBoard);
-      
       return newBoard;
    
    }
 
+   public boolean isCardOnBoard(String word){
+
+      for (int z = 0; z < 5; z++) {
+         for (int y = 0; y < 5; y++) {
+            if (board[z][y].getWord().equals(word.toLowerCase())) {
+               return true;
+            }
+         }
+      }
+
+      return false;
+   }
+
+   public CardTeam getCardTeamFromString(String word, Turn team){
+      for (int z = 0; z < 5; z++) {
+         for (int y = 0; y < 5; y++) {
+            Card c = board[z][y];
+            if (c.getWord().equals(word.toLowerCase())) {
+               if(team.toString().contains(c.getCardTeam().toString())){
+                  System.out.print("Yes! " + word + " was the correct card!");
+               } else {
+                  if (c.getCardTeam() == CardTeam.CIVILIAN){
+                     System.out.println("Nope! The card was a civilian. Say goodbye to your turn...");
+                  } else if (c.getCardTeam() == CardTeam.ASSASSIN){
+                     System.out.println("Oh no!!!! You picked the assassin! Game over! " + team.getOppositeTeam() +
+                             " wins!");
+                  } else {
+                     System.out.println("Whoops! You picked the other team's card!");
+                  }
+               }
+               c.setCovered();
+               return c.getCardTeam();
+            }
+
+         }
+      }
+
+      return null;
+   }
 
 
-   public void printBoard(Card[][] board){
+
+   public void printBoard(){
       for (int count = 0; count < 5; count++){
          for (int i = 0; i < 5; i++)
          {
@@ -68,7 +106,7 @@ public class Board
    }
 
 
-   public static void revealCardsCM()
+   public void revealCardsCM()
    {
    
       for (int z = 0; z < 5; z++){

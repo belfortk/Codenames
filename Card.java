@@ -1,4 +1,4 @@
-
+import static org.apache.commons.lang3.text.WordUtils.capitalizeFully;
 
 public class Card{
 
@@ -54,7 +54,7 @@ public class Card{
    public String toString()
    {
    
-      return covered ? "Covered by " + team : word;
+      return covered ? team.toString() : word;
    
    }
    
@@ -63,7 +63,7 @@ public class Card{
    {
    
    //will return attributes of Card Object
-      return word + " " + covered +  " "  +  team;
+      return covered ? team.toString() : capitalizeFully(word) + " -- " + team;
    
    }
   
