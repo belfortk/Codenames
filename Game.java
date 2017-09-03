@@ -53,7 +53,7 @@ public class Game
             System.out.println("Ok! Now type out the word you'd like to use as your clue.");
             System.out.println();
             currentClue = console.nextLine();
-            while(!veritfyClue(currentClue)){
+            while(!verifyClue(currentClue)){
                System.out.println("Uh-oh! " + currentClue + " is not a valid clue. Please write a one-word," +
                        " not-on-the-board clue only!");
                currentClue = console.nextLine();
@@ -93,21 +93,52 @@ public class Game
                   CardTeam guessCardTeam = board.getCardTeamFromString(guess, turn);
                   switch (guessCardTeam){
                      case RED:
+                         redRemaining--;
                         if(turn.toString().contains("BLUE"))
                            currentGuesses=0;
+
                         else {
-                           redRemaining--;
+
                            currentGuesses--;
-                           System.out.println(" You have " + currentGuesses + " guesses remaining!");
+                           if (currentGuesses == 0)
+                           {
+                               System.out.println("\nYou have a bonus guess! Type in the word you want to guess or type -1 to pass");
+                               guess = console.nextLine();
+                               guessCardTeam = board.getCardTeamFromString(guess, turn);
+                               if (guessCardTeam == CardTeam.BLUE){
+                                   blueRemaining--;
+                               }
+                               else{
+                                   redRemaining--;
+                               }
+                           }
+                           else {
+                               System.out.println(" You have " + currentGuesses + " guesses remaining!");
+                           }
                         }
                         break;
                      case BLUE:
+                         blueRemaining--;
                         if(turn.toString().contains("RED"))
                            currentGuesses=0;
                         else {
-                           blueRemaining--;
+
                            currentGuesses--;
-                           System.out.println(" You have " + currentGuesses + " guesses remaining!");
+                            if (currentGuesses == 0)
+                            {
+                                System.out.println("\nYou have a bonus guess! Type in the word you want to guess or type -1 to pass");
+                                guess = console.nextLine();
+                                guessCardTeam = board.getCardTeamFromString(guess, turn);
+                                if (guessCardTeam == CardTeam.RED){
+                                    redRemaining--;
+                                }
+                                else{
+                                    blueRemaining--;
+                                }
+                            }
+                            else {
+                                System.out.println(" You have " + currentGuesses + " guesses remaining!");
+                            }
                         }
                         break;
                      case CIVILIAN:
@@ -172,7 +203,7 @@ public class Game
    }
 
 
-   private boolean veritfyClue(String clue) {
+   private boolean verifyClue(String clue) {
       if(clue.contains(" ") || board.isCardOnBoard(clue))
          return false;
       else
