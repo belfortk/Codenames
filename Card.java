@@ -9,7 +9,7 @@ public class Card{
    
    public Card(String word){
    
-      this.word = word;
+      this.word = capitalizeFully(word);
       covered = false;
       team = null;
    
@@ -60,7 +60,7 @@ public boolean getCovered()
    public String toString()
    {
    
-      return covered ? team.toString() : word;
+      return covered ? "Covered -- " + word : word;
    
    }
    
@@ -69,7 +69,8 @@ public boolean getCovered()
    {
    
    //will return attributes of Card Object
-      return covered ? team.toString() : capitalizeFully(word) + " -- " + team;
+      String colorizedWord = Colors.colorize(capitalizeFully(team.toString()), word);
+      return covered ? colorizedWord + " is Covered" : colorizedWord;
    
    }
   
