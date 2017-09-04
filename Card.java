@@ -37,6 +37,12 @@ public class Card{
       }
    }
 
+public boolean getCovered()
+{
+   return covered;
+}
+
+
    public CardTeam getCardTeam()
    {
       return team;
