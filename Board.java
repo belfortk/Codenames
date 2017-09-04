@@ -116,7 +116,7 @@ public class Board
          for (int y = 0; y < 5; y++)
          {
                            
-            System.out.print(board[z][y].showCardDetails() + "   ");
+            System.out.print(board[z][y].showCodeMasterCards() + "   ");
             
             
          }
