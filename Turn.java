@@ -48,12 +48,5 @@ public enum Turn
 
    }
 
-   public String colorize(String team){
-
-      return (team.split(" ")[0].equals("Blue") ? Colors.ANSI_BLUE : Colors.ANSI_RED)
-              + team + Colors.ANSI_RESET;
-
-   }
-
 }
 
