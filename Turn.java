@@ -25,6 +25,7 @@ public enum Turn
                System.out.println(i + "...");
 
          }
+         System.out.println("\n");
       }
 
    }

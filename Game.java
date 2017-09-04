@@ -43,10 +43,10 @@ public class Game
    }
 
    public void run() throws InterruptedException {
-      System.out.println("Welcome to Codenames! Please pick your Code Master and have them sit nearest to the computer.");
+      System.out.println("Welcome to Codenames! Please pick your Code Master and have them sit nearest to the computer. \n");
       while(!victory){
          turn.getString();
-         System.out.println("The Score is: Blue " + blueRemaining + " and Red " + redRemaining);
+         System.out.println("The Score is: Blue " + blueRemaining + " and Red " + redRemaining + "\n");
          if(turn.toString().contains("CM")){
             board.revealCardsCM();
             System.out.println();
@@ -85,7 +85,7 @@ public class Game
             board.printBoard();
             System.out.println("Players! Your clue is '" + currentClue + "' and you have " + currentGuesses +
                     " guesses to find the cards associated with it. Please input your guess " +
-                    "below, one at a time.");
+                    "below, one at a time. \n");
             while(currentGuesses > 0){
                console.nextLine();
                String guess = console.nextLine();
@@ -94,8 +94,10 @@ public class Game
                   switch (guessCardTeam){
                      case RED:
                          redRemaining--;
+
                         if(turn.toString().contains("BLUE"))
-                           currentGuesses=0;
+                           currentGuesses=-1;
+
 
                         else {
 
@@ -108,9 +110,16 @@ public class Game
                                if (guessCardTeam == CardTeam.BLUE){
                                    blueRemaining--;
                                }
-                               else{
+                               else if (guessCardTeam == CardTeam.RED){
                                    redRemaining--;
                                }
+                               else if (guessCardTeam == CardTeam.CIVILIAN){
+                                 currentGuesses = -1;
+                              }
+                              else if (guessCardTeam == CardTeam.ASSASSIN){
+                                 currentGuesses=-1;
+                                 victory=true;
+                              }
                            }
                            else {
                                System.out.println(" You have " + currentGuesses + " guesses remaining!");
@@ -120,7 +129,9 @@ public class Game
                      case BLUE:
                          blueRemaining--;
                         if(turn.toString().contains("RED"))
-                           currentGuesses=0;
+                           currentGuesses=-1;
+
+
                         else {
 
                            currentGuesses--;
@@ -132,9 +143,18 @@ public class Game
                                 if (guessCardTeam == CardTeam.RED){
                                     redRemaining--;
                                 }
-                                else{
+                                else if (guessCardTeam == CardTeam.BLUE)
+                                {
                                     blueRemaining--;
                                 }
+                                else if (guessCardTeam == CardTeam.CIVILIAN){
+                                   currentGuesses = -1;
+                                }
+                                else if (guessCardTeam == CardTeam.ASSASSIN){
+                                   currentGuesses=-1;
+                                   victory=true;
+                                }
+
                             }
                             else {
                                 System.out.println(" You have " + currentGuesses + " guesses remaining!");
@@ -142,10 +162,10 @@ public class Game
                         }
                         break;
                      case CIVILIAN:
-                        currentGuesses=0;
+                        currentGuesses=-1;
                         break;
                      case ASSASSIN:
-                        currentGuesses=0;
+                        currentGuesses=-1;
                         victory=true;
                         break;
                   }
@@ -204,7 +224,7 @@ public class Game
 
 
    private boolean verifyClue(String clue) {
-      if(clue.contains(" ") || board.isCardOnBoard(clue))
+      if(clue.contains(" ") || board.isCardOnBoard(clue) )
          return false;
       else
          return true;
