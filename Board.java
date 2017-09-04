@@ -44,7 +44,7 @@ public class Board
       return false;
    }
 
-   public CardTeam getCardTeamFromString(String word, Turn team){
+   public CardTeam clickCard(String word, Turn team){
       for (int z = 0; z < 5; z++) {
          for (int y = 0; y < 5; y++) {
             Card c = board[z][y];
