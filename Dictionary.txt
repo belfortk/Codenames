@@ -100,7 +100,8 @@ lawyer
 lead
 lemon
 limousine
-leadlock
+lead
+lock
 log
 mammoth
 maple
