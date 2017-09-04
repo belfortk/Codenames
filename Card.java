@@ -48,19 +48,19 @@ public class Card {
 
 
     public String toString() {
-        return covered ? getCoveredWord(word) : word;
+        return covered ? getCoveredWord() : word;
 
     }
 
     public String showCodeMasterCards() {
-        return covered ? getCoveredWord(word) : getColorizedWord(word);
+        return covered ? getCoveredWord() : getColorizedWord();
     }
 
-    public String getColorizedWord(String word) {
+    public String getColorizedWord() {
         return Colors.colorize(capitalizeFully(team.toString()), word);
     }
 
-    public String getCoveredWord(String word) {
+    public String getCoveredWord() {
         return Colors.colorize(capitalizeFully(team.toString()), word) + " is Covered";
     }
 
