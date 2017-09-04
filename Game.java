@@ -157,8 +157,10 @@ public class Game {
                                         guessCardTeam = board.getCardTeamFromString(guess, turn);
                                         if (guessCardTeam == CardTeam.RED) {
                                             redRemaining--;
+                                            System.out.println();
                                         } else if (guessCardTeam == CardTeam.BLUE) {
                                             blueRemaining--;
+                                            System.out.println();
                                         } else if (guessCardTeam == CardTeam.CIVILIAN) {
                                             currentGuesses = -1;
                                         } else if (guessCardTeam == CardTeam.ASSASSIN) {
@@ -184,10 +186,6 @@ public class Game {
                         System.out.println("Uh-oh! We couldn't find " + guess + " on the board." +
                                 " Perhaps there was a spelling error?");
                     }
-
-//                    String dummy1 = console.nextLine();
-//                    String dummy2 = console.nextLine();
-
 
             }
 
