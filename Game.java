@@ -105,7 +105,7 @@ public class Game {
 
                String guess = console.nextLine();
                try {
-                  CardTeam guessCardTeam = board.getCardTeamFromString(guess, turn);
+                  CardTeam guessCardTeam = board.clickCard(guess, turn);
                   switch (guessCardTeam){
                      case RED:
                          redRemaining--;
@@ -120,9 +120,11 @@ public class Game {
 
                                System.out.println("\nYou have a bonus guess! Type in the word you want to guess or type -1 to pass");
                                guess = console.nextLine();
-                               guessCardTeam = board.getCardTeamFromString(guess, turn);
+                               guessCardTeam = board.clickCard(guess, turn);
+
                                if (guessCardTeam == CardTeam.BLUE){
                                    blueRemaining--;
+
                                System.out.println();
                                         }
                                else if (guessCardTeam == CardTeam.RED){
@@ -154,7 +156,7 @@ public class Game {
                                     if (currentGuesses == 0) {
                                         System.out.println("\nYou have a bonus guess! Type in the word you want to guess or type -1 to pass");
                                         guess = console.nextLine();
-                                        guessCardTeam = board.getCardTeamFromString(guess, turn);
+                                        guessCardTeam = board.clickCard(guess, turn);
                                         if (guessCardTeam == CardTeam.RED) {
                                             redRemaining--;
                                             System.out.println();
