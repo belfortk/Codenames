@@ -19,7 +19,6 @@ public class Game {
     private ArrayList<String> blueCluesList = new ArrayList<String>();
     private ArrayList<String> redCluesList = new ArrayList<String>();
 
-
     private String currentClue;
     private int currentGuesses;
     private Scanner console;
@@ -43,8 +42,7 @@ public class Game {
    public void run() throws InterruptedException {
       System.out.println("Welcome to Codenames! Please pick your Code Master and have them sit nearest to the computer. \n");
       while(!victory){
-
-         System.out.printf(turn.getString() +"!The Score is: %sBlue " + blueRemaining + "%s and %sRed " + redRemaining + "%s\n\n",
+         System.out.printf(turn.getString() + "! The Score is: %sBlue " + blueRemaining + "%s and %sRed " + redRemaining + "%s\n\n",
                  Colors.ANSI_BLUE, Colors.ANSI_RESET, Colors.ANSI_RED, Colors.ANSI_RESET);
          if(turn.toString().contains("CM")){
             board.revealCardsCM();
@@ -56,12 +54,11 @@ public class Game {
                System.out.println("Uh-oh! " + currentClue + " is not a valid clue. Please write a one-word," +
                        " not-on-the-board clue only!");
                currentClue = console.nextLine();
-            }
-            if (turn.toString().contains("RED")) {
+            }if (turn.toString().contains("RED")) {
                     redCluesList.add(currentClue);
                 } else {
                     blueCluesList.add(currentClue);
-                }System.out.println(currentClue + " is your clue! I hope your team gets it...");
+            }System.out.println(currentClue + " is your clue! I hope your team gets it...");
             Thread.sleep(1000);
             System.out.println("Now pick the number of guesses you'd like your team to have!");
             Thread.sleep(1000);
@@ -85,14 +82,10 @@ public class Game {
 
             } else {
 
-                board.printBoard();
-                System.out.println();
-
-                System.out.println("Players! Your clue is '" + currentClue + "' and you have " + currentGuesses +
-                        " guesses to find the cards associated with it. Please input your guess " +
-                        "below, one at a time. \n");
-
-                if (turn.toString().contains("RED")) {
+            board.printBoard();
+            System.out.println();System.out.println("Players! Your clue is '" + currentClue + "' and you have " + currentGuesses +
+                    " guesses to find the cards associated with it. Please input your guess " +
+                    "below, one at a time. \n");if (turn.toString().contains("RED")) {
 
                     System.out.print("Previous clues: ");
                     for (int i = 0; i < redCluesList.size(); i++) {
@@ -108,45 +101,51 @@ public class Game {
                     }
                     System.out.println();
                 }
-                while (currentGuesses > 0) {
-                    console.nextLine();
-                    String guess = console.nextLine();
-                    try {
-                        CardTeam guessCardTeam = board.getCardTeamFromString(guess, turn);
-                        switch (guessCardTeam) {
-                            case RED:
-                                redRemaining--;
+            while(currentGuesses > 0){
+
+               String guess = console.nextLine();
+               try {
+                  CardTeam guessCardTeam = board.getCardTeamFromString(guess, turn);
+                  switch (guessCardTeam){
+                     case RED:
+                         redRemaining--;
 
                                 if (turn.toString().contains("BLUE"))
                                     currentGuesses = -1;
 
-
                         else {
 
-                                    currentGuesses--;
-                                    if (currentGuesses == 0) {
-                                        System.out.println("\nYou have a bonus guess! Type in the word you want to guess or type -1 to pass");
-                                        guess = console.nextLine();
-                                        guessCardTeam = board.getCardTeamFromString(guess, turn);
-                                        if (guessCardTeam == CardTeam.BLUE) {
-                                            blueRemaining--;
-                                        } else if (guessCardTeam == CardTeam.RED) {
-                                            redRemaining--;
-                                        } else if (guessCardTeam == CardTeam.CIVILIAN) {
-                                            currentGuesses = -1;
-                                        } else if (guessCardTeam == CardTeam.ASSASSIN) {
-                                            currentGuesses = -1;
-                                            victory = true;
+                           currentGuesses--;
+                           if (currentGuesses == 0){
+
+                               System.out.println("\nYou have a bonus guess! Type in the word you want to guess or type -1 to pass");
+                               guess = console.nextLine();
+                               guessCardTeam = board.getCardTeamFromString(guess, turn);
+                               if (guessCardTeam == CardTeam.BLUE){
+                                   blueRemaining--;
+                               System.out.println();
                                         }
-                                    } else {
-                                        System.out.println(" You have " + currentGuesses + " guesses remaining!");
-                                    }
-                                }
-                                break;
-                            case BLUE:
-                                blueRemaining--;
-                                if (turn.toString().contains("RED"))
-                                    currentGuesses = -1;
+                               else if (guessCardTeam == CardTeam.RED){
+                                   redRemaining--;
+                               System.out.println();
+                                        }
+                               else if (guessCardTeam == CardTeam.CIVILIAN){
+                                 currentGuesses = -1;
+                              }
+                              else if (guessCardTeam == CardTeam.ASSASSIN){
+                                 currentGuesses=-1;
+                                 victory=true;
+
+                           }
+                           }else {
+                               System.out.println(" You have " + currentGuesses + " guesses remaining!");
+                           }
+                        }
+                        break;
+                     case BLUE:
+                         blueRemaining--;
+                        if(turn.toString().contains("RED"))
+                           currentGuesses=-1;
 
 
                                 else {
@@ -186,8 +185,11 @@ public class Game {
                                 " Perhaps there was a spelling error?");
                     }
 
+//                    String dummy1 = console.nextLine();
+//                    String dummy2 = console.nextLine();
 
-                }
+
+            }
 
                 if (redRemaining == 0 || blueRemaining == 0)
                     victory = true;
@@ -226,7 +228,8 @@ public class Game {
          else if(i>9){
             System.out.println("Uh-oh! Your guesses needs to be smaller than nine!");
             i = 0;
-         }return i;
+         }
+         return i;
       } catch (NumberFormatException e){
          System.out.println("That isn't a number!");
          return 0;
@@ -242,7 +245,8 @@ public class Game {
          Integer.parseInt(clue);
          return false;
       } catch (NumberFormatException e){
-         return true;}
+         return true;
+      }
 
     }
 
