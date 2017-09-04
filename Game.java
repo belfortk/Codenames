@@ -45,8 +45,8 @@ public class Game
    public void run() throws InterruptedException {
       System.out.println("Welcome to Codenames! Please pick your Code Master and have them sit nearest to the computer. \n");
       while(!victory){
-         turn.getString();
-         System.out.println("The Score is: Blue " + blueRemaining + " and Red " + redRemaining + "\n");
+         System.out.printf(turn.getString() + "! The Score is: %sBlue " + blueRemaining + "%s and %sRed " + redRemaining + "%s\n\n",
+                 Colors.ANSI_BLUE, Colors.ANSI_RESET, Colors.ANSI_RED, Colors.ANSI_RESET);
          if(turn.toString().contains("CM")){
             board.revealCardsCM();
             System.out.println();
@@ -73,7 +73,7 @@ public class Game
             System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
             System.out.println("Get ready to turn the computer around in...");
 
-            for(int i = 5; i >= 0; i--){
+            for(int i = 5; i > 0; i--){
                Thread.sleep(1000);
                System.out.println(i + "...");
 
@@ -97,7 +97,6 @@ public class Game
 
                         if(turn.toString().contains("BLUE"))
                            currentGuesses=-1;
-
 
                         else {
 
@@ -214,6 +213,10 @@ public class Game
          int i = Integer.parseInt(s);
          if (i<1)
             System.out.println("Uh-oh! Your guesses needs to be greater than zero!");
+         else if(i>9){
+            System.out.println("Uh-oh! Your guesses needs to be smaller than nine!");
+            i = 0;
+         }
          return i;
       } catch (NumberFormatException e){
          System.out.println("That isn't a number!");
@@ -224,10 +227,14 @@ public class Game
 
 
    private boolean verifyClue(String clue) {
-      if(clue.contains(" ") || board.isCardOnBoard(clue) )
+      if(clue.contains(" ") || board.isCardOnBoard(clue) || clue.isEmpty())
          return false;
-      else
+      try {
+         Integer.parseInt(clue);
+         return false;
+      } catch (NumberFormatException e){
          return true;
+      }
 
    }
 

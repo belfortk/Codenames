@@ -1,3 +1,5 @@
+import static org.apache.commons.lang3.text.WordUtils.capitalizeFully;
+
 public class Board
 {
 
@@ -46,7 +48,7 @@ public class Board
       for (int z = 0; z < 5; z++) {
          for (int y = 0; y < 5; y++) {
             Card c = board[z][y];
-            if (c.getWord().equals(word.toLowerCase())) {
+            if (c.getWord().equals(capitalizeFully(word))) {
                if(team.toString().contains(c.getCardTeam().toString())){
                   System.out.print("Yes! " + word + " was the correct card!");
                } else {
@@ -79,7 +81,7 @@ public class Board
          }
          System.out.println();
       }
-   
+      System.out.println();
    }
    
   
@@ -108,7 +110,8 @@ public class Board
 
    public void revealCardsCM()
    {
-   
+      System.out.printf("Legend: %s %s\n\n", Colors.colorize("Civilian", "Civilian"),
+              Colors.colorize("Assassin", "Assassin"));
       for (int z = 0; z < 5; z++){
          for (int y = 0; y < 5; y++)
          {
