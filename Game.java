@@ -81,8 +81,6 @@ public class Game {
 
 
             } else {
-
-            board.printBoard();
             System.out.println();System.out.println("Players! Your clue is '" + currentClue + "' and you have " + currentGuesses +
                     " guesses to find the cards associated with it. Please input your guess " +
                     "below, one at a time. \n");if (turn.toString().contains("RED")) {
@@ -102,7 +100,7 @@ public class Game {
                     System.out.println();
                 }
             while(currentGuesses > 0){
-
+               board.printBoard();
                String guess = console.nextLine();
                try {
                   CardTeam guessCardTeam = board.clickCard(guess, turn);
@@ -119,6 +117,7 @@ public class Game {
                            if (currentGuesses == 0){
 
                                System.out.println("\nYou have a bonus guess! Type in the word you want to guess or type -1 to pass");
+                               board.printBoard();
                                guess = console.nextLine();
                                guessCardTeam = board.clickCard(guess, turn);
 
@@ -155,6 +154,7 @@ public class Game {
                                     currentGuesses--;
                                     if (currentGuesses == 0) {
                                         System.out.println("\nYou have a bonus guess! Type in the word you want to guess or type -1 to pass");
+                                        board.printBoard();
                                         guess = console.nextLine();
                                         guessCardTeam = board.clickCard(guess, turn);
                                         if (guessCardTeam == CardTeam.RED) {
