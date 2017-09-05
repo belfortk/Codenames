@@ -42,10 +42,14 @@ public class Game {
    public void run() throws InterruptedException {
       System.out.println("Welcome to Codenames! Please pick your Code Master and have them sit nearest to the computer. \n");
       while(!victory){
+
          System.out.printf(turn.getString() + "! The Score is: %sBlue " + blueRemaining + "%s and %sRed " + redRemaining + "%s\n\n",
                  Colors.ANSI_BLUE, Colors.ANSI_RESET, Colors.ANSI_RED, Colors.ANSI_RESET);
          if(turn.toString().contains("CM")){
-            board.revealCardsCM();
+           // board.revealCardsCM();
+
+            board.printCardStacks();
+
             System.out.println();
             System.out.println("Ok! Now type out the word you'd like to use as your clue.");
             System.out.println();

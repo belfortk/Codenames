@@ -31,4 +31,8 @@ public class Colors {
         return str += Colors.ANSI_RESET;
     }
 
+    public static String colorize(String team){
+        return colorize(team, team);
+    }
+
 }
