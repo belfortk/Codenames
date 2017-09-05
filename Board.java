@@ -74,6 +74,8 @@ public class Board
 
 
    public void printBoard(){
+
+      System.out.println();
       for (int count = 0; count < 5; count++){
          for (int i = 0; i < 5; i++)
          {
