@@ -1,3 +1,5 @@
+package code;
+
 import java.util.Random;
 import java.util.Scanner;
 import java.io.*;
@@ -271,13 +273,13 @@ public class Game {
 
 
         //get number of words in Dict file and add words to dict ArrayList
-        File wordFile = new File("Dictionary.txt");
+        InputStream wordFile = this.getClass().getResourceAsStream("/resources/Dictionary.txt");
         Scanner inputFile1 = new Scanner(wordFile);
         int wordCount = 0;
         ArrayList<String> dict = new ArrayList<String>();
 
 
-        try (Scanner sc = new Scanner(new FileInputStream(wordFile))) {
+        try (Scanner sc = new Scanner(wordFile)) {
 
             while (sc.hasNext()) {
                 dict.add(sc.nextLine());

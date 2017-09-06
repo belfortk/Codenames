@@ -1,3 +1,5 @@
+package code;
+
 import static org.apache.commons.lang3.text.WordUtils.capitalizeFully;
 
 public class Card {
