@@ -74,6 +74,8 @@ public class Board
 
 
    public void printBoard(){
+
+      System.out.println();
       for (int count = 0; count < 5; count++){
          for (int i = 0; i < 5; i++)
          {
@@ -116,7 +118,7 @@ public class Board
          for (int y = 0; y < 5; y++)
          {
                            
-            System.out.print(board[z][y].showCodeMasterCards() + "   ");
+            System.out.print(board[z][y].getColorizedWord() + "   ");
             
             
          }

@@ -84,12 +84,14 @@ public class Game {
 
             } else {
 
+
                 board.printBoard();
                 System.out.println();
                 System.out.println("Players! Your clue is '" + currentClue + "' and you have " + currentGuesses +
                         " guesses to find the cards associated with it. Please input your guess " +
                         "below, one at a time, or type -1 to pass your guess! \n");
                 if (turn.toString().contains("RED")) {
+
 
                     System.out.print("Previous clues: ");
                     for (int i = 0; i < redCluesList.size(); i++) {
@@ -104,6 +106,7 @@ public class Game {
                     }
                     System.out.println();
                 }
+
                 while (currentGuesses > 0) {
 
                     String guess = console.nextLine();
@@ -186,6 +189,7 @@ public class Game {
 
                                         } else {
                                             System.out.println(" You have " + currentGuesses + " guesses remaining!");
+
                                         }
                                     }
                                     break;
