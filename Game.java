@@ -86,7 +86,7 @@ public class Game {
 
 
             System.out.println();System.out.println("Players! Your clue is '" + currentClue + "' and you have " + currentGuesses +
-                    " guesses to find the cards associated with it. Please input your guess " +
+                    " guesses to find the cards associated with it. \nPlease input your guess " +
                     "below, one at a time, or type -1 to pass your guess! \n");if (turn.toString().contains("RED")) {
 
                     System.out.print("Previous clues: ");
@@ -248,14 +248,25 @@ public class Game {
 
 
     private boolean verifyClue(String clue) {
-        if (clue.contains(" ") || board.isCardOnBoard(clue) || clue.isEmpty())
-            return false;
         try {
             Integer.parseInt(clue);
             return false;
         } catch (NumberFormatException e) {
-            return true;
+            if (clue.contains(" ") || board.isCardOnBoard(clue) || clue.isEmpty())
+                return false;
+            else
+                return containsDashesAndIllegalWords(clue);
         }
+
+    }
+
+    private boolean containsDashesAndIllegalWords(String clue) {
+        String[] words = clue.split("-");
+        for(String w : words){
+            if(board.isCardOnBoard(w))
+                return false;
+        }
+        return true;
 
     }
 
@@ -308,15 +319,6 @@ public class Game {
             cards[counter] = new Card(dict.get(i));
             counter++;
         }
-
-
-        /***
-         for(int i = 0; i <25; i++)
-         {
-         cards[i] = new Card(dict.get(i));
-
-         }
-         ***/
 
 
     }
