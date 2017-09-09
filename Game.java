@@ -84,13 +84,12 @@ public class Game {
             } else {
 
 
-                board.printBoard();
+
                 System.out.println();
                 System.out.println("Players! Your clue is '" + currentClue + "' and you have " + currentGuesses +
                         " guesses to find the cards associated with it. Please input your guess " +
                         "below, one at a time, or type -1 to pass your guess! \n");
                 if (turn.toString().contains("RED")) {
-
 
                     System.out.print("Previous clues: ");
                     for (int i = 0; i < redCluesList.size(); i++) {
@@ -107,7 +106,7 @@ public class Game {
                 }
 
                 while (currentGuesses > 0) {
-
+               board.printBoard();
                     String guess = console.nextLine();
 
                     if(guess.equals("-1")){
@@ -129,12 +128,11 @@ public class Game {
                                         currentGuesses--;
                                         if (currentGuesses == 0) {
 
-                                            System.out.println("\nYou have a bonus guess! Type in the word you want to guess or type -1 to pass");
-                                            guess = console.nextLine();
-                                            if (guess.equals("-1")) {
+                               System.out.println("\nYou have a bonus guess! Type in the word you want to guess or type -1 to pass");
+                               board.printBoard();guess = console.nextLine();
+                               if (guess.equals("-1")) {
                                                 System.out.println("You pass your bonus guess.");
-                                            } else {
-                                                guessCardTeam = board.clickCard(guess, turn);
+                                            } else {guessCardTeam = board.clickCard(guess, turn);
 
                                                 if (guessCardTeam == CardTeam.BLUE) {
                                                     blueRemaining--;
@@ -163,28 +161,25 @@ public class Game {
 
                                     else {
 
-                                        currentGuesses--;
-                                        if (currentGuesses == 0) {
-                                            System.out.println("\nYou have a bonus guess! Type in the word you want to guess or type -1 to pass");
-                                            guess = console.nextLine();
-                                            if (guess.equals("-1")) {
+                                    currentGuesses--;
+                                    if (currentGuesses == 0) {
+                                        System.out.println("\nYou have a bonus guess! Type in the word you want to guess or type -1 to pass");
+                                        board.printBoard();guess = console.nextLine();
+                                        if (guess.equals("-1")) {
                                                 System.out.println("You pass your bonus guess.");
-                                            } else {
-                                                guessCardTeam = board.clickCard(guess, turn);
-                                                if (guessCardTeam == CardTeam.RED) {
-                                                    redRemaining--;
-                                                    System.out.println();
-                                                } else if (guessCardTeam == CardTeam.BLUE) {
-                                                    blueRemaining--;
-                                                    System.out.println();
-                                                } else if (guessCardTeam == CardTeam.CIVILIAN) {
-                                                    currentGuesses = -1;
-                                                } else if (guessCardTeam == CardTeam.ASSASSIN) {
-                                                    currentGuesses = -1;
-                                                    victory = true;
-                                                }
-                                            }
-
+                                            } else {guessCardTeam = board.clickCard(guess, turn);
+                                        if (guessCardTeam == CardTeam.RED) {
+                                            redRemaining--;
+                                            System.out.println();
+                                        } else if (guessCardTeam == CardTeam.BLUE) {
+                                            blueRemaining--;
+                                            System.out.println();
+                                        } else if (guessCardTeam == CardTeam.CIVILIAN) {
+                                            currentGuesses = -1;
+                                        } else if (guessCardTeam == CardTeam.ASSASSIN) {
+                                            currentGuesses = -1;
+                                            victory = true;
+                                        }}
 
                                         } else {
                                             System.out.println(" You have " + currentGuesses + " guesses remaining!");
