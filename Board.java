@@ -83,23 +83,26 @@ public class Board {
     }
 
 
-    public void printBoard() {
-        for (int count = 0; count < 5; count++) {
-            for (int i = 0; i < 5; i++) {
-                System.out.print(board[count][i] + "  ");
-            }
-            System.out.println();
-        }
-        System.out.println();
-    }
 
+   public void printBoard(){
+System.out.println();      for (int count = 0; count < 5; count++){
+         for (int i = 0; i < 5; i++){
 
-    public Card[][] getBoard() {
-
-        return board;
-
-    }
-
+            System.out.print(board[count][i] + "  ");
+         }
+         System.out.println();
+      }
+      System.out.println();
+   }
+   
+  
+   public Card[][] getBoard()
+   {
+   
+      return board;
+   
+   }
+  
 
     public void setCardTeams(CardTeam[][] map) {
 
@@ -122,7 +125,7 @@ public class Board {
         for (int z = 0; z < 5; z++) {
             for (int y = 0; y < 5; y++) {
 
-                System.out.print(board[z][y].showCodeMasterCards() + "   ");
+                System.out.print(board[z][y].getColorizedWord() + "   ");
 
 
             }
