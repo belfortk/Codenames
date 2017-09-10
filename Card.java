@@ -52,10 +52,6 @@ public class Card {
 
     }
 
-    public String showCodeMasterCards() {
-        return getColorizedWord();
-    }
-
     public String getColorizedWord() {
         return Colors.colorize(capitalizeFully(team.toString()), word);
     }
