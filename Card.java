@@ -42,8 +42,9 @@ public class Card {
     }
 
 
-    public void setCardTeam(CardTeam teamName) {
+    public CardTeam setCardTeam(CardTeam teamName) {
         this.team = teamName;
+        return team;
     }
 
 

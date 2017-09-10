@@ -10,6 +10,7 @@ public class Game {
     private Card[] cards;
     private Turn turn;
     private Board board;
+    private Scoreboard scoreboard;
     private Map map;
 
     private boolean victory;
@@ -31,10 +32,12 @@ public class Game {
 
         generateCardList();
         board = new Board(cards);
+        scoreboard = new Scoreboard();
         map = new Map();
         turn = map.getStart();
         setStartingTeam();
-        board.setCardTeams(map.getCardTeams());
+        board.setCardTeamsAndFillScoreBoard(map.getCardTeams(), scoreboard);
+        scoreboard.findLongestWordLength();
 
 
     }
@@ -45,7 +48,11 @@ public class Game {
          System.out.printf(turn.getString() + "! The Score is: %sBlue " + blueRemaining + "%s and %sRed " + redRemaining + "%s\n\n",
                  Colors.ANSI_BLUE, Colors.ANSI_RESET, Colors.ANSI_RED, Colors.ANSI_RESET);
          if(turn.toString().contains("CM")){
-           // board.revealCardsCM();board.printCardStacks();
+           // board.revealCardsCM();
+
+             System.out.println(scoreboard);
+
+
             System.out.println();
             System.out.println("Ok! Now type out the word you'd like to use as your clue.");
             System.out.println();
@@ -116,6 +123,9 @@ public class Game {
 
                         try {
                             CardTeam guessCardTeam = board.clickCard(guess, turn);
+                            scoreboard.changeColorScoreboard(guess, guessCardTeam);
+
+
                             switch (guessCardTeam) {
                                 case RED:
                                     redRemaining--;
