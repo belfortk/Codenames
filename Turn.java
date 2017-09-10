@@ -13,7 +13,7 @@ public enum Turn
          return "Red";
    }
 
-   public String getString() throws InterruptedException {
+   public String getString(boolean debug) throws InterruptedException {
       String team = getTeam();
       String role = getRole();
       String teamAndRoleString = getTeamAndRoleString();
@@ -22,10 +22,12 @@ public enum Turn
          System.out.println(teamAndRoleString + ", it's your turn to pick a word! Remember, you can only give ONE word," +
                  " no more!");
          System.out.println("We'll give you 5 seconds to turn the computer away from the prying eyes of the players...");
-         for(int i = 5; i > 0; i--){
+         if(!debug){
+            for(int i = 5; i > 0; i--){
                Thread.sleep(1000);
                System.out.println(i + "...");
 
+            }
          }
       }
 

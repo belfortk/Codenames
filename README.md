@@ -1,0 +1,1 @@
+If you want to skip the countdown timer, add "debug" to the program arguments in Run -> Edit Configuration
