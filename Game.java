@@ -106,6 +106,7 @@ public class Game {
                     }
                     System.out.println();
                 }
+
                 while (currentGuesses > 0) {
                board.printBoard();
                     String guess = console.nextLine();
@@ -184,6 +185,7 @@ public class Game {
 
                                         } else {
                                             System.out.println(" You have " + currentGuesses + " guesses remaining!");
+
                                         }
                                     }
                                     break;
