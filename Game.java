@@ -23,10 +23,13 @@ public class Game {
     private int currentGuesses;
     private Scanner console;
 
+    private boolean debug;
+
 
     public Game() throws FileNotFoundException {
 
         victory = false;
+        debug = false;
         console = new Scanner(System.in);
 
         generateCardList();
@@ -39,10 +42,10 @@ public class Game {
 
     }
 
-    public void run(String argument) throws InterruptedException {
+    public void run() throws InterruptedException {
         System.out.println("Welcome to Codenames! Please pick your Code Master and have them sit nearest to the computer. \n");
         while (!victory) {
-            System.out.printf(turn.getString(argument) + "! The Score is: %sBlue " + blueRemaining + "%s and %sRed " + redRemaining + "%s\n\n",
+            System.out.printf(turn.getString(debug) + "! The Score is: %sBlue " + blueRemaining + "%s and %sRed " + redRemaining + "%s\n\n",
                     Colors.ANSI_BLUE, Colors.ANSI_RESET, Colors.ANSI_RED, Colors.ANSI_RESET);
             if (turn.toString().contains("CM")) {
                 board.revealCardsCM();
@@ -74,7 +77,7 @@ public class Game {
                 Thread.sleep(2000);
                 System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
                 System.out.println("Get ready to turn the computer around in...");
-                if(!argument.equals("debug")){
+                if(!debug){
                     for (int i = 5; i > 0; i--) {
                         Thread.sleep(1000);
                         System.out.println(i + "...");
@@ -284,6 +287,10 @@ public class Game {
         turnCounter = turn.ordinal();
     }
 
+    public void setDebug(boolean debug){
+        this.debug = debug;
+    }
+
 
     public void generateCardList() throws FileNotFoundException
 
@@ -326,7 +333,8 @@ public class Game {
 
     public static void main(String[] args) throws FileNotFoundException, InterruptedException {
         Game game = new Game();
-        game.run(args.length == 0 ? "" : args[0]);
+        game.setDebug(args[0].equals("debug"));
+        game.run();
 
     }
 
