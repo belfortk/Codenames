@@ -35,7 +35,7 @@ public class Board
 
       for (int z = 0; z < 5; z++) {
          for (int y = 0; y < 5; y++) {
-            if (board[z][y].getWord().equals(word.toLowerCase())) {
+            if (board[z][y].getWord().toLowerCase().equals(word.toLowerCase())) {
                return true;
             }
          }
