@@ -336,7 +336,8 @@ public class Game {
 
     public static void main(String[] args) throws FileNotFoundException, InterruptedException {
         Game game = new Game();
-        game.setDebug(args[0].equals("debug"));
+        if(args.length > 0)
+            game.setDebug(args[0].equals("debug"));
         game.run();
 
     }
